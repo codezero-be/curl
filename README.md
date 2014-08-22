@@ -55,29 +55,29 @@ Only the URL, data and headers option, and a few options that are required for t
 
 ##### Send the request: (one of the following) #####
 
-	$reponse = $request->get($url, $data, $headers);
-	$reponse = $request->post($url, $data, $headers);
-	$reponse = $request->put($url, $data, $headers);
-	$reponse = $request->patch($url, $data, $headers);
-	$reponse = $request->delete($url, $data, $headers);
+	$response = $request->get($url, $data, $headers);
+	$response = $request->post($url, $data, $headers);
+	$response = $request->put($url, $data, $headers);
+	$response = $request->patch($url, $data, $headers);
+	$response = $request->delete($url, $data, $headers);
 
-All of these methods will return an instance of the `CodeZero\Curl\Reponse` class.
+All of these methods will return an instance of the `CodeZero\Curl\Response` class.
 
 ##### Get the response body #####
 
-	$body = $reponse->getBody();
+	$body = $response->getBody();
 
 ##### Get additional request info #####
 
 	// Array with all info
-	$info = $reponse->info()->getList();
+	$info = $response->info()->getList();
 
 	// Specific information
 	$httpCode = $reponse->info()->getHttpCode(); //=> "200"
-	$reponseType = $reponse->info()->getResponseType(); //=> "application/json"
-	$responseCharset = $reponse->info()->getResponseCharset(); //=> "UTF-8" 
+	$responseType = $response->info()->getResponseType(); //=> "application/json"
+	$responseCharset = $response->info()->getResponseCharset(); //=> "UTF-8" 
 
-For an overview of all the available info, take a look at the `CodeZero\Curl\ReponseInfo` class or refer to [http://php.net/manual/en/function.curl-getinfo.php](http://php.net/manual/en/function.curl-getinfo.php "cURL info")
+For an overview of all the available info, take a look at the `CodeZero\Curl\ResponseInfo` class or refer to [http://php.net/manual/en/function.curl-getinfo.php](http://php.net/manual/en/function.curl-getinfo.php "cURL info")
  
 ## Exceptions ##
 
