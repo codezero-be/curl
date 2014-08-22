@@ -93,6 +93,14 @@ A `CodeZero\Curl\RequestException` will be thrown, if cURL was unable to execute
 
 HTTP response errors >= 400 will not throw an exception, unless you set the `CURLOPT_FAILONERROR` cURL option to `true`. If you do, these errors will also throw a `CodeZero\Curl\RequestException`, with the proper error message.
 
+Another way to handle HTTP errors is to check the `$httpCode` value:
+
+	if ($httpCode >= 400)
+	{
+		// Handle error...
+		// or throw your own exception...
+	}
+
 ## Curl Class ##
 
 You can also use the `Curl` class instead of the `Request` class. The difference is that you will need to provide all of the cURL options yourself and you will just get the raw response back instead of the `Response` object.
