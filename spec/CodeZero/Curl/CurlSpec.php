@@ -90,9 +90,12 @@ class CurlSpec extends ObjectBehavior {
 
         $this->sendRequest($options);
 
-        $this->getError()->shouldReturn('Unsupported protocol');
         $this->getErrorCode()->shouldReturn(1); //=> CURLE_UNSUPPORTED_PROTOCOL
         $this->getErrorDescription()->shouldReturn('Protocol sptth not supported or disabled in libcurl');
+
+        // Function curl_strerror only available since PHP 5.5.0,
+        // $this->getError() returns same as $this->getErrorDescription() for older versions
+        //$this->getError()->shouldReturn('Unsupported protocol');
     }
 
     function it_url_encodes_the_given_string()

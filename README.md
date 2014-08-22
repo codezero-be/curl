@@ -114,7 +114,7 @@ You can also use the `Curl` class instead of the `Request` class. The difference
 	$info = $curl->getRequestInfo(); //=> Returns info array
 
 	// Get errors
-	$error = $curl->getError();
+	$error = $curl->getError(); //=> For PHP < 5.5.0 this is the same as $curl->getErrorDescription()
 	$errorCode = $curl->getErrorCode();
 	$errorDescription = $curl->getErrorDescription();
 
@@ -147,7 +147,7 @@ The following will do the exact same thing as the previous example:
 	$info = $curl->getRequestInfo(); //=> Returns info array
 
 	// Get errors
-	$error = $curl->getError();
+	$error = $curl->getError();//=> For PHP < 5.5.0 this is the same as $curl->getErrorDescription()
 	$errorCode = $curl->getErrorCode();
 	$errorDescription = $curl->getErrorDescription();
 

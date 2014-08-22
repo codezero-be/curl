@@ -156,6 +156,12 @@ class Curl {
      */
     public function getError()
     {
+        if ( ! function_exists('curl_strerror'))
+        {
+            return $this->getErrorDescription();
+        }
+
+        // PHP >= 5.5.0
         return curl_strerror($this->getErrorCode());
     }
 
@@ -193,6 +199,12 @@ class Curl {
             $this->initialize();
         }
 
+        if ( ! function_exists('curl_escape'))
+        {
+            return rawurlencode($string);
+        }
+
+        // PHP >= 5.5.0
         return curl_escape($this->curl, $string);
     }
 
@@ -210,6 +222,12 @@ class Curl {
             $this->initialize();
         }
 
+        if ( ! function_exists('curl_unescape'))
+        {
+            return rawurldecode($string);
+        }
+
+        // PHP >= 5.5.0
         return curl_unescape($this->curl, $string);
     }
 
@@ -220,12 +238,13 @@ class Curl {
      */
     public function reset()
     {
-        if ($this->curl == null)
+        if ($this->curl == null or ! function_exists('curl_reset'))
         {
             $this->initialize();
         }
         else
         {
+            // PHP >= 5.5.0
             curl_reset($this->curl);
 
             $this->response = null;
