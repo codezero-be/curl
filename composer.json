@@ -1,0 +1,29 @@
+{
+    "name": "codezero/curl",
+    "description": "Simple cURL wrapper",
+    "keywords": [
+        "api",
+        "curl",
+        "request",
+        "http"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Vermeyen",
+            "email": "ivan@codezero.be"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "CodeZero\\Curl": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
