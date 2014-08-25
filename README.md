@@ -73,7 +73,7 @@ All of these methods will return an instance of the `CodeZero\Curl\Response` cla
 	$info = $response->info()->getList();
 
 	// Specific information
-	$httpCode = $reponse->info()->getHttpCode(); //=> "200"
+	$httpCode = $response->info()->getHttpCode(); //=> "200"
 	$responseType = $response->info()->getResponseType(); //=> "application/json"
 	$responseCharset = $response->info()->getResponseCharset(); //=> "UTF-8" 
 
