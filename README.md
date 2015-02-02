@@ -29,13 +29,9 @@ Send requests, the easy way!
 
 ##### Create a Request instance: #####
 
-	// Instantiate Dependencies (or let an IoC container take care of this)
-    $curl = new \CodeZero\Curl\Curl();
-    $optionParser = new \CodeZero\Curl\OptionParser();
-    $responseFactory = new \CodeZero\Curl\ResponseFactory();
+	use CodeZero\Curl\Request;
 
-    // Instantiate Request
-    $request = new \CodeZero\Curl\Request($curl, $optionParser, $responseFactory);
+    $request = new Request();
 
 You can now use this for all of your requests. You don't need to create a new instance for every request.
 
