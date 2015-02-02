@@ -170,3 +170,6 @@ The `Curl` class will only throw a `CodeZero\Curl\CurlException`, when there is 
 	{
 		// Do something...
 	}
+
+---
+[![Analytics](https://ga-beacon.appspot.com/UA-58876018-1/codezero-be/curl)](https://github.com/igrigorik/ga-beacon)
