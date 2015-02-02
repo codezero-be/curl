@@ -18,6 +18,12 @@ class RequestSpec extends ObjectBehavior {
         $this->shouldHaveType('CodeZero\Curl\Request');
     }
 
+    function it_is_initializable_without_constructor_arguments()
+    {
+        $this->beConstructedWith();
+        $this->shouldHaveType('CodeZero\Curl\Request');
+    }
+
     function it_sets_an_option()
     {
         $this->isOptionSet(CURLOPT_USERAGENT)->shouldBe(false);

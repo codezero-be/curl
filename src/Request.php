@@ -37,11 +37,11 @@ class Request {
      * @param OptionParser $optionParser
      * @param ResponseFactory $responseFactory
      */
-    public function __construct(Curl $curl, OptionParser $optionParser, ResponseFactory $responseFactory)
+    public function __construct(Curl $curl = null, OptionParser $optionParser = null, ResponseFactory $responseFactory = null)
     {
-        $this->curl = $curl;
-        $this->optionParser = $optionParser;
-        $this->responseFactory = $responseFactory;
+        $this->curl = $curl ?: new Curl();
+        $this->optionParser = $optionParser ?: new OptionParser();
+        $this->responseFactory = $responseFactory ?: new ResponseFactory();
 
         $this->setDefaultOptions();
     }
