@@ -1,9 +1,9 @@
 # Simple cURL Wrapper #
 
-[![Build Status](https://travis-ci.org/codezero-be/curl.svg?branch=master)](https://travis-ci.org/codezero-be/curl)
-[![Latest Stable Version](https://poser.pugx.org/codezero/curl/v/stable.svg)](https://packagist.org/packages/codezero/curl)
-[![Total Downloads](https://poser.pugx.org/codezero/curl/downloads.svg)](https://packagist.org/packages/codezero/curl)
-[![License](https://poser.pugx.org/codezero/curl/license.svg)](https://packagist.org/packages/codezero/curl)
+[![Build Status](https://img.shields.io/travis/codezero-be/curl.svg?branch=master)](https://travis-ci.org/codezero-be/curl)
+[![Packagist](https://img.shields.io/packagist/v/codezero/curl.svg)](https://packagist.org/packages/codezero/curl)
+[![Total Downloads](https://img.shields.io/packagist/dt/codezero/curl.svg)](https://packagist.org/packages/codezero/curl)
+[![License](https://img.shields.io/packagist/l/codezero/curl.svg)](https://packagist.org/packages/codezero/curl)
 
 This package wraps most of the cURL functions in a dedicated `Curl` class, making it feel more object oriented and a little easier to use.
 
