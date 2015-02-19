@@ -1,7 +1,7 @@
 <?php namespace CodeZero\Curl;
 
-class ResponseFactory {
-
+class ResponseFactory
+{
     /**
      * Make a response
      *
@@ -42,5 +42,4 @@ class ResponseFactory {
     {
         return new Response($responseBody, $responseInfo);
     }
-
 }

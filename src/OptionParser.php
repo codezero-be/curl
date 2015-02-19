@@ -1,7 +1,7 @@
 <?php namespace CodeZero\Curl; 
 
-class OptionParser {
-
+class OptionParser
+{
     /**
      * Build URL with query string
      *
@@ -45,5 +45,4 @@ class OptionParser {
 
         return $parsed;
     }
-
-} 
+}

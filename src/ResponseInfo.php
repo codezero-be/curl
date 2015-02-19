@@ -1,7 +1,7 @@
 <?php namespace CodeZero\Curl;
 
-class ResponseInfo {
-
+class ResponseInfo
+{
     /**
      * Array Request Information
      *
@@ -147,5 +147,4 @@ class ResponseInfo {
             ? $this->info[$key]
             : null;
     }
-
 }

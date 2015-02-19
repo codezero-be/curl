@@ -1,7 +1,7 @@
 <?php namespace CodeZero\Curl;
 
-class Response {
-
+class Response
+{
     /**
      * The Response Body
      *
@@ -57,5 +57,4 @@ class Response {
     {
         return $this->rawResponse;
     }
-
 }

@@ -1,7 +1,7 @@
 <?php namespace CodeZero\Curl; 
 
-class Curl {
-
+class Curl
+{
     /**
      * cURL Resource Handle
      *
@@ -12,12 +12,14 @@ class Curl {
     /**
      * cURL Response
      *
-     * @var mixed
+     * @var bool|string
      */
     private $response;
 
     /**
      * Constructor
+     *
+     * @throws CurlException
      */
     public function __construct()
     {
@@ -35,7 +37,7 @@ class Curl {
      */
     public function initialize()
     {
-        if ($this->curl != null)
+        if ($this->isInitialized())
         {
             $this->close();
         }
@@ -65,13 +67,11 @@ class Curl {
      * @param mixed $value
      *
      * @return bool
+     * @throws CurlException
      */
     public function setOption($option, $value)
     {
-        if ($this->curl == null)
-        {
-            $this->initialize();
-        }
+        $this->autoInitialize();
 
         return curl_setopt($this->curl, $option, $value);
     }
@@ -82,13 +82,11 @@ class Curl {
      * @param array $options
      *
      * @return bool
+     * @throws CurlException
      */
     public function setOptions(array $options)
     {
-        if ($this->curl == null)
-        {
-            $this->initialize();
-        }
+        $this->autoInitialize();
 
         return curl_setopt_array($this->curl, $options);
     }
@@ -100,14 +98,12 @@ class Curl {
      *
      * @param array $options
      *
-     * @return mixed
+     * @return bool|string
+     * @throws CurlException
      */
     public function sendRequest(array $options = [])
     {
-        if ($this->curl == null)
-        {
-            $this->initialize();
-        }
+        $this->autoInitialize();
 
         if ( ! empty($options))
         {
@@ -125,7 +121,7 @@ class Curl {
     /**
      * Get the response of the last cURL request
      *
-     * @return mixed
+     * @return bool|string
      */
     public function getResponse()
     {
@@ -141,7 +137,7 @@ class Curl {
      */
     public function getRequestInfo($key = null)
     {
-        if ($this->curl == null)
+        if ( ! $this->isInitialized())
         {
             return $key ? '' : [];
         }
@@ -191,21 +187,11 @@ class Curl {
      * @param string $string
      *
      * @return string|bool
+     * @throws CurlException
      */
     public function urlEncode($string)
     {
-        if ($this->curl == null)
-        {
-            $this->initialize();
-        }
-
-        if ( ! function_exists('curl_escape'))
-        {
-            return rawurlencode($string);
-        }
-
-        // PHP >= 5.5.0
-        return curl_escape($this->curl, $string);
+        return $this->parseUrl($string, false);
     }
 
     /**
@@ -214,31 +200,22 @@ class Curl {
      * @param string $string
      *
      * @return string|bool
+     * @throws CurlException
      */
     public function urlDecode($string)
     {
-        if ($this->curl == null)
-        {
-            $this->initialize();
-        }
-
-        if ( ! function_exists('curl_unescape'))
-        {
-            return rawurldecode($string);
-        }
-
-        // PHP >= 5.5.0
-        return curl_unescape($this->curl, $string);
+        return $this->parseUrl($string, true);
     }
 
     /**
      * Reset all cURL options
      *
      * @return void
+     * @throws CurlException
      */
     public function reset()
     {
-        if ($this->curl == null or ! function_exists('curl_reset'))
+        if ( ! $this->isInitialized() || ! function_exists('curl_reset'))
         {
             $this->initialize();
         }
@@ -258,7 +235,7 @@ class Curl {
      */
     public function close()
     {
-        if ($this->curl != null)
+        if ($this->isInitialized())
         {
             curl_close($this->curl);
 
@@ -285,4 +262,39 @@ class Curl {
         $this->close();
     }
 
+    /**
+     * Initialize cURL if it has not been initialized yet
+     *
+     * @throws CurlException
+     */
+    private function autoInitialize()
+    {
+        if ( ! $this->isInitialized())
+        {
+            $this->initialize();
+        }
+    }
+
+    /**
+     * Encode or decode a URL
+     *
+     * @param string $string
+     * @param bool $decode
+     *
+     * @return bool|string
+     */
+    private function parseUrl($string, $decode)
+    {
+        $this->autoInitialize();
+
+        $function = $decode ? 'curl_unescape' : 'curl_escape';
+
+        if ( ! function_exists($function))
+        {
+            return rawurlencode($string);
+        }
+
+        // PHP >= 5.5.0
+        return call_user_func($function, $this->curl, $string);
+    }
 }

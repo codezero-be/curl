@@ -1,7 +1,7 @@
 <?php namespace CodeZero\Curl;
 
-class Request {
-
+class Request
+{
     /**
      * cURL Wrapper
      *
@@ -356,6 +356,11 @@ class Request {
         // Fetch additional information about the request
         $responseInfo = $this->curl->getRequestInfo();
 
+        if ( ! is_array($responseInfo))
+        {
+            throw new RequestException('Unable to retrieve request info array!');
+        }
+
         // Get the error (if any)
         $errorCode = $this->curl->getErrorCode();
         $errorDescription = $this->curl->getErrorDescription();
@@ -372,5 +377,4 @@ class Request {
         // Generate a response with the collected information
         return $this->responseFactory->make($rawResponse, $responseInfo);
     }
-
-} 
+}
