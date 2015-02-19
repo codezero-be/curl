@@ -291,7 +291,7 @@ class Curl
 
         if ( ! function_exists($function))
         {
-            return rawurlencode($string);
+            return $decode ? rawurldecode($string) : rawurlencode($string);
         }
 
         // PHP >= 5.5.0
